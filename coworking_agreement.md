@@ -3,23 +3,30 @@
 Talk through each section with your partner. Add notes on what you discussed and agreed upon in each section. At the bottom, type your names to sign off on your agreement.
 
 ## Accessibility Needs
-*What does each team member need access to in order to succeed and show up the best they can?*
+- Access to Internet
+- Access to laptop
+- Avalability of each person
 
 ## Collaboration vs. Individual Work Expectations
-*Clarify your collaboration expectations - does your group want to write code together all of the time? Or divide work to do independently, then come together to share accomplishments? What tools and technologies can help your collaboration?*
+We are planning to write code together pretty much the whole time, if there is anything we feel we can divide then we can. The tools that will help us collaborate is zoom, slack, VS code, and github.
 
 ## Learning Style
-*How does each team member learn best in project settings?*
+Each member has own learning style. 
+Doing and experimenting;
+observing and asking question;
+reading documentation.
+But, as a team, we support each style by pairing and encouring discussion.
+
 
 ## Preferred Feedback Style
-*How does each team member best receive feedback?*
+We both perfer to recieve feedback directly but nice and in an understandable way (why that person feels that way).
 
 ## One Team Communication Skill to Improve
-*What is a teamwork-related skill you want to work on?*
+We both want to work on collaborating with others at the same time rather then individually, and also communication.
 
 ## Optional: Other agreements
 *Other co-working agreements that were not captured in the above sections.*
 
 ## Signatures
-______________ _______________
-Date: _________
+____Mumina Abi____ _______Gina Song________
+Date: __12/11/25___
