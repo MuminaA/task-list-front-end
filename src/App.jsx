@@ -15,8 +15,6 @@ const TASKS = [
   },
 ];
 
-
-
 const App = () => {
   // store tasks in state
   const[tasks, setTasks] = useState(TASKS);
