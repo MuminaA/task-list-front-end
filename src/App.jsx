@@ -31,9 +31,9 @@ const App = () => {
   };
 
   // function to delete a task
-  // const deleteTask = (id) => {
-  //   setTasks(tasks.filter(task => task.id !== id));
-  // };
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
 
 
   return (
@@ -46,7 +46,7 @@ const App = () => {
           <TaskList 
             tasks={tasks} 
             onToggleComplete={toggleComplete}
-            // onDeleteTask={deleteTask}
+            onDeleteTask={deleteTask}
           />
         </div>
       </main>
