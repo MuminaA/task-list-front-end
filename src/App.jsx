@@ -3,9 +3,6 @@ import TaskList from './components/TaskList.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-
-
-
 // const TASKS = [
 //   {
 //     id: 1,
@@ -18,8 +15,6 @@ import axios from 'axios';
 //     isComplete: true,
 //   },
 // ];
-
-
 
 // Base URL for the Task List API
 const kbaseURL = 'http://localhost:5000';
@@ -41,8 +36,6 @@ const convertFromAPI = (apiTask) => {
   return newTask;
 };
 
-
-
 const App = () => {
   // state to hold tasks array
   const[tasks, setTasks] = useState([]);
@@ -62,25 +55,44 @@ const App = () => {
     getAllTasks();
   }, []);
 
-
-
-
-
   // function to toggle task completion
   const toggleComplete = (id) => {
-    setTasks(tasks.map(task => {
-      if (task.id === id) {
-        return { ...task, isComplete: !task.isComplete };
-      }
-      return task;
-    }));
+    // Find the task to check current state
+    const task = tasks.find(t => t.id === id);
+
+    // Determine which endpoint to call
+    const endpoint = task.isComplete
+      ? `${kbaseURL}/tasks/${id}/mark_incomplete`
+      : `${kbaseURL}/tasks/${id}/mark_complete`;
+
+    // Make API call using .then() pattern
+    axios.patch(endpoint)
+      .then(() => {
+        // Update local state after successful API call
+        setTasks(tasks.map(task =>
+          task.id === id
+            ? { ...task, isComplete: !task.isComplete }
+            : task
+        ));
+      })
+      .catch(error => {
+        console.error('Error toggling task:', error);
+      });
+  };
+
+  // function to call API to delete a task
+  const deleteTask = id => {
+    return axios.delete(`${kbaseURL}/tasks/${id}`)
+      .catch(error => console.log(error));
   };
 
   // function to delete a task
-  const deleteTask = (id) => {
-    setTasks(tasks.filter(task => task.id !== id));
+  const handleDeleteTask = (id) => {
+    return deleteTask(id)
+      .then(() => {
+        setTasks(tasks.filter(task => task.id !== id));
+      });
   };
-
 
   return (
     <div className="App">
@@ -92,7 +104,7 @@ const App = () => {
           <TaskList
             tasks={tasks}
             onToggleComplete={toggleComplete}
-            onDeleteTask={deleteTask}
+            onDeleteTask={handleDeleteTask}
           />
         </div>
       </main>
