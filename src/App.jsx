@@ -36,6 +36,12 @@ const convertFromAPI = (apiTask) => {
   return newTask;
 };
 
+// function to call API to delete a task
+const deleteTaskAPI = id => {
+  return axios.delete(`${kbaseURL}/tasks/${id}`)
+    .catch(error => console.log(error));
+};
+
 const App = () => {
   // state to hold tasks array
   const[tasks, setTasks] = useState([]);
@@ -80,15 +86,9 @@ const App = () => {
       });
   };
 
-  // function to call API to delete a task
-  const deleteTask = id => {
-    return axios.delete(`${kbaseURL}/tasks/${id}`)
-      .catch(error => console.log(error));
-  };
-
   // function to delete a task
   const handleDeleteTask = (id) => {
-    return deleteTask(id)
+    return deleteTaskAPI(id)
       .then(() => {
         setTasks(tasks.filter(task => task.id !== id));
       });
