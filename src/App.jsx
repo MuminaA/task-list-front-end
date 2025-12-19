@@ -2,6 +2,7 @@ import './App.css';
 import TaskList from './components/TaskList.jsx';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import NewTaskForm from './components/NewTaskForm.jsx';
 
 // const TASKS = [
 //   {
@@ -34,6 +35,19 @@ const convertFromAPI = (apiTask) => {
     isComplete: apiTask.is_complete,
   };
   return newTask;
+};
+
+// Function to convert frontend task format to API format
+const convertToAPI = (frontendTask) => {
+  return {
+    title: frontendTask.title,
+    description: '',  
+    isComplete: frontendTask.isComplete,
+  };
+};
+
+const addTaskAPI = (newTask) => {
+  return axios.post(`${kbaseURL}/tasks`, convertToAPI(newTask));
 };
 
 // function to call API to delete a task
@@ -94,6 +108,16 @@ const App = () => {
       });
   };
 
+  const onHandleSubmit = (data) => {  
+    return addTaskAPI(data)
+      .then((result) => {
+        setTasks(prevTasks => [convertFromAPI(result.data), ...prevTasks]);
+      })
+      .catch(error => {
+        console.error('Error adding task:', error);
+      });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -106,6 +130,7 @@ const App = () => {
             onToggleComplete={toggleComplete}
             onDeleteTask={handleDeleteTask}
           />
+          <NewTaskForm onHandleSubmit={onHandleSubmit} />
         </div>
       </main>
     </div>
